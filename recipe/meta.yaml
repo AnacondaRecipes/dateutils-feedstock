@@ -17,8 +17,10 @@ build:
 
 requirements:
   build:
-    - python >=3
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python >=3
     # - argparse only for py<27
