@@ -22,7 +22,7 @@ requirements:
     - setuptools
     - wheel
   run:
-    - python >=3
+    - python
     # - argparse only for py<27
     - python-dateutil
     - pytz
