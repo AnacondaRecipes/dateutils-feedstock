@@ -30,12 +30,10 @@ requirements:
 test:
   imports:
     - dateutils
-  # we can re-enable pip check when upstream drops 2.6 or they add it as a py26 dep only.
-  # or, better yet, pip understands that it is in the std library there this hack of installing stubs needs to end!
-  # requires:
-  #   - pip
+  requires:
+    - pip
   commands:
-    # - pip check
+    - pip check
     - dateadd --help
     - datediff --help
 
