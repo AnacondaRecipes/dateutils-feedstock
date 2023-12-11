@@ -10,40 +10,45 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv  --no-deps --no-build-isolation
   entry_points:
     - dateadd = dateutils.dateadd:main
     - datediff = dateutils.datediff:main
 
 requirements:
-  build:
-    - python >=3
+  host:
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3
-    # - argparse only for py<27
+    - python
     - python-dateutil
     - pytz
 
 test:
   imports:
     - dateutils
-  # we can re-enable pip check when upstream drops 2.6 or they add it as a py26 dep only.
-  # or, better yet, pip understands that it is in the std library there this hack of installing stubs needs to end!
-  # requires:
-  #   - pip
+  requires:
+    - pip
   commands:
-    # - pip check
+    - pip check
     - dateadd --help
     - datediff --help
 
 about:
   home: https://pypi.org/project/dateutils
+  description: |
+    The main purpose of this package is to provide more complex arithmetic operations on dates/times.
+    Heavy use is made of the relativedelta type from Labix's dateutil library.
+    Much of this package is just a light wrapper on top of this with some added features
+    such as range generation and business day calculation.
   license: 0BSD
   license_file: LICENSE
+  license_family: BSD
   summary: Various utilities for working with date and datetime objects
-
+  dev_url: https://github.com/jmcantrell/python-dateutils
+  doc_url: https://github.com/jmcantrell/python-dateutils
 extra:
   recipe-maintainers:
     - kwilcox
